@@ -25,13 +25,13 @@ public class UrlShorterRestController {
         return new ResponseEntity<Object>(shortenUrl, HttpStatus.OK);
     }
 
-    @RequestMapping(value="/{randomstring}", method=RequestMethod.GET)
+    @RequestMapping(value="/s/{randomstring}", method=RequestMethod.GET)
     public void getFullUrl(HttpServletResponse response, @PathVariable("randomstring") String randomString) throws IOException {
         response.sendRedirect(shortenUrlList.get(randomString).getFull_url());
     }
 
     private void setShortUrl(String randomChar, ShortenUrl shortenUrl) throws MalformedURLException {
-        shortenUrl.setShort_url("http://localhost:8080/"+randomChar);
+        shortenUrl.setShort_url("http://localhost:8080/s/"+randomChar);
         shortenUrlList.put(randomChar, shortenUrl);
     }
 
